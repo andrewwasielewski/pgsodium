@@ -45,5 +45,3 @@ jobs:
           Add-Content -Path $env:PGDATA\postgresql.conf -Value "pgsodium.getkey_script = '$env:PGDATA\pgsodium_getkey.bat'"
           pg_ctl -D $env:PGDATA
         shell: pwsh
-          
-        shell: pwsh
