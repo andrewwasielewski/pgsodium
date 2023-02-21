@@ -19,5 +19,5 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v2
 
-      - name: Add msbuild to path
-        uses: microsoft/setup-msbuild
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1
