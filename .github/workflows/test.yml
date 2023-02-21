@@ -30,4 +30,4 @@ jobs:
 
       - name: Run msbuild
         working-directory: ./build
-        run: msbuild pgsodium.vcxproj /p:libsodiumLocation=./libsodium /p:PostgreSQLLocation=%PGROOT% /p:Configuration=Release /p:platformToolset=v143
+        run: msbuild pgsodium.vcxproj /p:libsodiumLocation=./libsodium /p:PostgreSQLLocation=%PGROOT% /p:Configuration=Release /p:Platform=x64 /p:platformToolset=v143
