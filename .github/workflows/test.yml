@@ -6,8 +6,10 @@ jobs:
   test_linux:
     runs-on: ubuntu-latest
     steps:
-      - name: Run tests
+      - name: Checkout source code
         uses: actions/checkout@v2
+
+      - name: Run tests
         run: |
           ./test.sh
   test_windows:
@@ -16,8 +18,6 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
-        id: checkout_code
 
       - name: Add msbuild to path
         uses: microsoft/setup-msbuild
-        id: add_msbuild
