@@ -34,7 +34,7 @@ jobs:
         run: |
           msbuild pgsodium.vcxproj /p:libsodiumLocation=..\libsodium /p:PostgreSQLLocation=%PGROOT% /p:Configuration=Release /p:Platform=x64 /p:platformToolset=v143
 
-      - name: Install libraries and update postgresql.conf
+      - name: Install libraries, update config, and restart
         run: |
           cp .\libsodium\x64\Release\v143\dynamic\libsodium.dll $env:PGROOT\lib
           cp .\build\x64\Release\pgsodium.dll $env:PGROOT\lib
@@ -42,10 +42,6 @@ jobs:
           cp .\sql\* $env:PGROOT\share\extension
           cp .\getkey_scripts\pgsodium_getkey.bat $env:PGDATA\
           ((Get-Content -Path $env:PGDATA\postgresql.conf) -Replace "#shared_preload_libraries = ''","shared_preload_libraries = 'pgsodium'") | Set-Content -Path $env:PGDATA\postgresql.conf
-          Add-Content -Path  $env:PGDATA\postgresql.conf -Value ("pgsodium.getkey_script = ' $env:PGDATA\pgsodium_getkey.bat'" -Replace "\\","/")
-        shell: pwsh
-
-      - name: Restart postgresql
-        run: |
+          Add-Content -Path  $env:PGDATA\postgresql.conf -Value ("pgsodium.getkey_script = '$env:PGDATA\pgsodium_getkey.bat'" -Replace "\\","/")
           & $env:PGBIN\pg_ctl restart -D $env:PGDATA
         shell: pwsh
