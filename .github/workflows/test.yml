@@ -33,3 +33,13 @@ jobs:
         working-directory: ./build
         run: |
           msbuild pgsodium.vcxproj /p:libsodiumLocation=..\libsodium /p:PostgreSQLLocation=%PGROOT% /p:Configuration=Release /p:Platform=x64 /p:platformToolset=v143
+
+      - name: Install libraries
+        run: |
+          cp .\libsodium\x64\Release\v143\dynamic\libsodium.dll %PGROOT%\lib
+          cp .\build\x64\Release\pgsodium.dll %PGROOT%\lib
+          cp pgsodium.control %PGROOT%\share\extension
+          cp .\sql\* %PGROOT%\share\extension
+          cp .\getkey_scripts\pgsodium_getkey.bat %PGROOT%\data
+          pg_ctl -D %PGROOT%\data
+        shell: pwsh
