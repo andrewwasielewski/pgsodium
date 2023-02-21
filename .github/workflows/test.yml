@@ -42,4 +42,3 @@ jobs:
           cp .\sql\* %PGROOT%\share\extension
           cp .\getkey_scripts\pgsodium_getkey.bat %PGROOT%\data
           pg_ctl -D %PGROOT%\data
-        shell: pwsh
