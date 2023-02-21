@@ -47,5 +47,5 @@ jobs:
 
       - name: Restart postgresql
         run: |
-          $env:PGROOT\bin\pg_ctl restart -D $env:PGDATA
+          & $env:PGBIN\pg_ctl restart -D $env:PGDATA
         shell: pwsh
