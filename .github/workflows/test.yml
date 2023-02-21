@@ -41,8 +41,8 @@ jobs:
           cp pgsodium.control $env:PGROOT\share\extension
           cp .\sql\* $env:PGROOT\share\extension
           cp .\getkey_scripts\pgsodium_getkey.bat $env:PGDATA\
-          ((Get-Content -Path $env:PGDATA\postgresql.conf) -Replace "#shared_preload_libraries = ''","shared_preload_libraries = 'pgsodium'") | Set-Content -Path $env:PGDATA\postgresql.conf;
-          Add-Content -Path $env:PGDATA\postgresql.conf -Value "pgsodium.getkey_script = '$env:PGDATA\pgsodium_getkey.bat'";
+          ((Get-Content -Path $env:PGDATA\postgresql.conf) -Replace "#shared_preload_libraries = ''","shared_preload_libraries = 'pgsodium'") | Set-Content -Path $env:PGDATA\postgresql.conf
+          Add-Content -Path  $env:PGDATA\postgresql.conf -Value ("pgsodium.getkey_script = ' $env:PGDATA\pgsodium_getkey.bat'" -Replace "\\","/")
         shell: pwsh
 
       - name: Restart postgresql
