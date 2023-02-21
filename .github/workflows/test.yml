@@ -45,3 +45,8 @@ jobs:
           Add-Content -Path  $env:PGDATA\postgresql.conf -Value ("pgsodium.getkey_script = '$env:PGDATA\pgsodium_getkey.bat'" -Replace "\\","/")
           & $env:PGBIN\pg_ctl restart -D $env:PGDATA
         shell: pwsh
+
+      - name: Run pgsodium tests
+        run: |
+          psql -q -U postgres -f .\test\test.sql
+        shell: pwsh
