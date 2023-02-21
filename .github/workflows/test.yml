@@ -36,10 +36,7 @@ jobs:
 
       - name: Install libraries
         run: |
-          cp .\libsodium\x64\Release\v143\dynamic\libsodium.dll $PGROOT\lib
-          cp .\build\x64\Release\pgsodium.dll $PGROOT\lib
-          cp pgsodium.control $PGROOT\share\extension
-          cp .\sql\* $PGROOT\share\extension
-          cp .\getkey_scripts\pgsodium_getkey.bat $PGDATA\
-          pg_ctl -D $PGDATA
+          echo $PGROOT
+          echo $PGDATA
+          
         shell: pwsh
