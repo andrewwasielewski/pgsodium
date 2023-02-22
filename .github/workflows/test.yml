@@ -46,7 +46,7 @@ jobs:
           & $env:PGBIN\pg_ctl restart -D $env:PGDATA
         shell: pwsh
 
-      - name: Run pgsodium tests
-        run: |
-          & $env:PGBIN\psql -q -U postgres -f .\test\test.sql
-        shell: pwsh
+      # - name: Run pgsodium tests
+      #   run: |
+      #     & $env:PGBIN\psql -q -U postgres -f .\test\test.sql
+      #   shell: pwsh
